@@ -1,0 +1,45 @@
+package com.example.onlinevotingsystem;
+
+import android.app.Activity;
+import android.os.Bundle;
+
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.utils.ColorTemplate;
+
+import java.util.ArrayList;
+
+
+public class MainActivity extends Activity  {
+
+ArrayList barArraylist;
+    @Override
+    protected void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        BarChart barChart = findViewById(R.id.bargraph);
+        getData();
+BarDataSet barDataSet = new BarDataSet(barArraylist, "The Votes");
+BarData barData = new BarData(barDataSet);
+barChart.setData(barData);
+
+
+barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+barDataSet.setValueTextColor(android.R.color.black);
+barDataSet.setValueTextSize(16f);
+
+barChart.getDescription().setEnabled(true);
+barChart.setTouchEnabled(true);
+barChart.setDragEnabled(true);
+barChart.setScaleEnabled(true);
+    }
+    private void getData()
+    {
+        barArraylist = new ArrayList();
+        barArraylist.add(new BarEntry(2f,10));
+        barArraylist.add(new BarEntry(3f,13));
+    }
+
+}
